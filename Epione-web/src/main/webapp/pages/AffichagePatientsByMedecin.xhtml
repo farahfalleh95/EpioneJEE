@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+template="/template/template.xhtml">
+<ui:param name="page_name" value="Affichage Parcours" />
+<ui:define name="content">
+<h:panelGroup>
+<h:form>
+<h:outputText value="Affichage Patients" /> 
+
+
+<h:dataTable value="#{patientBean.patients}" var="patient" border="1">
+
+<h:column><f:facet name="header"><h:outputText value="email" /></f:facet>
+<h:outputText value="#{patient.email}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="First Name" /></f:facet>
+<h:outputText value="#{patient.firstName}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="Last Name" /></f:facet>
+<h:outputText value="#{patient.lastName}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="phone number" /></f:facet>
+<h:outputText value="#{patient.phoneNumber}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="username" /></f:facet>
+<h:outputText value="#{patient.userName}" /></h:column>
+
+<h:column>
+<f:facet name="header"><h:outputText value="Action" /></f:facet>
+<h:commandButton action="#{parcoursBean.AffichageParcoursPatient(patient.id)}" value="Affichage Parcours Patient" /> 
+</h:column>
+
+</h:dataTable>
+
+</h:form>
+</h:panelGroup>
+</ui:define>
+</ui:composition> 
+

@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+template="/template/template.xhtml">
+<ui:param name="page_name" value="Affichage Parcours" />
+<ui:define name="content">
+<h:panelGroup>
+<h:form>
+<h:outputText value="Affichage Parcours" /> 
+<h:column>
+<f:facet name="header"><h:outputText value="Action" /></f:facet>
+<h:commandButton action="#{parcoursBean.AddParcours(parcoursBean.idp)}" value="Ajouter parcours" /> 
+</h:column>
+
+<h:dataTable value="#{parcoursBean.parcourspatients}" var="parcour" border="1">
+
+<h:column><f:facet name="header"><h:outputText value="adresse" /></f:facet>
+<h:outputText value="#{parcour.adresse}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="etat" /></f:facet>
+<h:outputText value="#{parcour.etat}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="etatrdv" /></f:facet>
+<h:outputText value="#{parcour.etatrdv}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="nom medecin" /></f:facet>
+<h:outputText value="#{parcour.nomMedecin}" /></h:column>
+
+<h:column>
+<f:facet name="header"><h:outputText value="Action" /></f:facet>
+<h:commandButton action="#{parcoursBean.modifier(parcour)}" value="Modifier" /> 
+<h:commandButton action="#{parcoursBean.removeParcour(parcour)}" value="Supprimer" /> 
+</h:column>
+
+</h:dataTable>
+
+</h:form>
+</h:panelGroup>
+</ui:define>
+</ui:composition> 
+

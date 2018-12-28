@@ -1,0 +1,14 @@
+model\Motif.class
+model\Soin.class
+Interfaces\ParcourServiceLocal.class
+model\Rapport.class
+Services\ParcourService$1.class
+Interfaces\ParcourServiceRemote.class
+model\RDV.class
+model\PlusMed.class
+model\Chat.class
+Services\ParcourService.class
+model\Programme.class
+model\Parcour.class
+model\Rating.class
+model\Notification.class

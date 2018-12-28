@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/template/template.xhtml">
+	
+	
+		<ui:param name="page_name" value="Modifier Parcours" />
+	<ui:define name="content">
+	<h:panelGroup>
+	<h:form>
+		<h:outputText value="Modifier Parcours" /> 
+		<table>
+<tr><td><h:outputText value="Adresse"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.adresse}"></h:inputText></td></tr>
+		
+		
+
+
+<tr><td><h:outputText value="Etat"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.etat}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="Etat rdv"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.etatrdv}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="idMedecin"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.idMedecin}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="id patient"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.idPatient}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="id RDV"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.idRDV}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="justification"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.justification}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="maladie"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.maladie}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="Nom Medecin"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.nomMedecin}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="specialite"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.parcoura.specialite}"></h:inputText></td></tr>
+
+<tr><td colspan="2"><h:commandButton action="#{parcoursBean.EditParcour(parcoursBean.parcoura.id,parcoursBean.parcoura)}" value="Modifier Parcours" /> </td></tr>
+
+</table>
+		</h:form>
+	</h:panelGroup>
+	</ui:define>
+	
+	
+	</ui:composition>
+</html>

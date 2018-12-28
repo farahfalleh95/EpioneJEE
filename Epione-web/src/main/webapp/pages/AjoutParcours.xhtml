@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+	<ui:composition template="/template/template.xhtml">
+	
+	
+		<ui:param name="page_name" value="Ajout Parcours" />
+	<ui:define name="content">
+	<h:panelGroup>
+	<h:form>
+		<h:outputText value="Ajout Parcours" /> 
+		<table>
+<tr><td><h:outputText value="Adresse"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.adresse}"></h:inputText></td></tr>
+		
+		
+
+
+<tr><td><h:outputText value="Etat"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.etat}"></h:inputText></td></tr>
+
+
+<tr><td><h:outputText value="idMedecin"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.idMedecin}"></h:inputText></td></tr>
+
+
+<tr><td><h:outputText value="justification"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.justification}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="maladie"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.maladie}"></h:inputText></td></tr>
+
+<tr><td><h:outputText value="Nom Medecin"></h:outputText></td>
+
+<td>
+<h:selectOneMenu value="#{parcoursBean.nomMedecin}">
+<f:selectItems value="#{parcoursBean.noms}"></f:selectItems>
+</h:selectOneMenu>
+</td></tr>
+
+
+<tr><td><h:outputText value="specialite"></h:outputText></td>
+<td><h:inputText value="#{parcoursBean.specialite}"></h:inputText></td></tr>
+
+<tr><td colspan="2"><h:commandButton action="#{parcoursBean.AddSubmitParcours()}" value="Ajouter Parcours" /> </td></tr>
+
+</table>
+		</h:form>
+	</h:panelGroup>
+	</ui:define>
+	
+	
+	</ui:composition>
+</html>
