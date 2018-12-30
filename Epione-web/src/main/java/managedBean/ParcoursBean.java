@@ -5,7 +5,10 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
 import Services.ParcourService;
+import model.AspNetUser;
 import model.Parcour;
 
 @ManagedBean(name = "parcoursBean")
@@ -47,6 +50,10 @@ public class ParcoursBean {
 		return navigateTo;
 	}
 	public String AddSubmitParcours() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("user");
+		
+		
 		Parcour parcours = new Parcour();	
 		parcours.setAdresse(adresse);
 		parcours.setDate(date);
@@ -60,6 +67,12 @@ public class ParcoursBean {
 		parcours.setNomMedecin(nomMedecin);
 		parcours.setSpecialite(specialite);
 		parcourService.AjoutParcours(parcours);
+		parcourService.getFirstname(nomMedecin);
+		parcourService.getLastName(nomMedecin);
+		AspNetUser pat = parcourService.getPatientByIdaa(idPatient);
+		AspNetUser med  = parcourService.getDoctotByName(parcourService.getFirstname(nomMedecin),parcourService.getLastName(nomMedecin));		
+		parcourService.mailingPatinet(pat.getEmail(), user.getEmail(), user.getPassword(), "contenu", nomMedecin);
+		parcourService.mailingPatinet(med.getEmail(), user.getEmail(), user.getPassword(), "email doc", nomMedecin);
 		String navigateTo = "null";
 		navigateTo = "/pages/AffichageParcoursPatient?faces-redirect=true";
 		return navigateTo;
@@ -88,13 +101,26 @@ public class ParcoursBean {
 		
 	}
 	
-	public String AffichageParcoursPatient(int id) {
+	
+	 	public String AffichageParcoursPatient(int id) {
 		String navigateTo = "null";
 		navigateTo = "/pages/AffichageParcoursPatient?faces-redirect=true";
 		setIdp(id);
 		setParcourspatients(parcourService.getAllParcoursPatient(id));
 		return navigateTo;
-		
+	}
+	/*
+ 	public String AffichageParcoursPatient() {
+ 		
+	String navigateTo = "null";
+	navigateTo = "/pages/AffichageParcoursPatient?faces-redirect=true";
+	setParcourspatients(parcourService.ListaffichageConsume());
+	return navigateTo;
+	
+ 	}
+ 	*/
+	public void ChangerEtat(Parcour p){	
+		parcourService.ChangerEtat(p);
 	}
 
 	public void removeParcour(Parcour p)
@@ -226,6 +252,5 @@ public class ParcoursBean {
 	public void setIdp(int idp) {
 		this.idp = idp;
 	}
-	
 
 }

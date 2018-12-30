@@ -32,6 +32,7 @@ template="/template/template.xhtml">
 <f:facet name="header"><h:outputText value="Action" /></f:facet>
 <h:commandButton action="#{parcoursBean.modifier(parcour)}" value="Modifier" /> 
 <h:commandButton action="#{parcoursBean.removeParcour(parcour)}" value="Supprimer" /> 
+<h:commandButton action="#{parcoursBean.ChangerEtat(parcour)}" value="Consultation terminée" /> 
 </h:column>
 
 </h:dataTable>

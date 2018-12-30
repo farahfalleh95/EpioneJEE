@@ -13,6 +13,7 @@ import java.util.Date;
  * The persistent class for the Parcours database table.
  * 
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="Parcours")
 @NamedQuery(name="Parcour.findAll", query="SELECT p FROM Parcour p")

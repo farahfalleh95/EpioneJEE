@@ -39,6 +39,12 @@ public class loginBean implements Serializable {
 			FacesContext context = FacesContext.getCurrentInstance();
 			context.getExternalContext().getSessionMap().put("user", user);
 		}
+		else if (user != null && user.getDiscriminator().equals("Patient"))
+		{
+			navigateTo = "/pages/AffichageParcoursInterfacePatient?faces-redirect=true";
+			loggedIn = true;
+			
+		}
 		else 
 		{
 			FacesContext.getCurrentInstance().addMessage("form:btn", new FacesMessage("Bad Credentials"));

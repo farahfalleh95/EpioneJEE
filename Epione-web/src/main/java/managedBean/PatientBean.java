@@ -28,6 +28,7 @@ public class PatientBean {
 		
 		FacesContext context = FacesContext.getCurrentInstance();
 		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("user");
+		
 		System.out.println(user.getId());
 		return parcoursService.getAllPatientByMedecinJee(user.getId());
 	}
