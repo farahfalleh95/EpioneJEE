@@ -150,31 +150,10 @@ public class ParcourService implements ParcourServiceRemote{
 		return null;
 	}
 	@Override
-	public List<AspNetUser> getAllPatientByMedecinJee(int id) {
+	public List<AspNetUser> getAllPatientInterfaceMedecin() {
 		
-		TypedQuery<AspNetUser> query = em.createQuery("select e from AspNetUser e where e.id=:idMedecin AND e.discriminator='Medecin'", AspNetUser.class); 
-
-		query.setParameter("idMedecin", id); 
-
-		AspNetUser user = null; 
-		List<AspNetUser> listpatient=new ArrayList<AspNetUser>();
-		List<Parcour> listparcoursbymedecin=new ArrayList<Parcour>();
-		
-		try {
-		user = query.getSingleResult(); 
-		TypedQuery<Parcour> query2 = em.createQuery("select e from Parcour e where e.idMedecin=:id", Parcour.class); 
-
-		query2.setParameter("id", id); 
-		 listparcoursbymedecin = query2.getResultList();
-		for (Parcour parcour : listparcoursbymedecin) {
-			if(!listpatient.contains(getPatientById(parcour.getIdPatient()))){
-				listpatient.add(getPatientById(parcour.getIdPatient()));
-			}
-		
-		}
-		
-		}
-		catch (Exception e) { System.out.println("Erreur : " + e); }
+		TypedQuery<AspNetUser> query = em.createQuery("select p from AspNetUser p where p.discriminator='Patient'", AspNetUser.class);
+		List<AspNetUser> listpatient = query.getResultList();
 		return listpatient;
 
 		}

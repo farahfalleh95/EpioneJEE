@@ -16,7 +16,7 @@ public interface ParcourServiceRemote {
 	public void EditParcours(int id,Parcour u);
 	public List<Parcour> AffichageParcour();
 	public List<Parcour> getAllPatientByMedecin(int idMedecin);
-	public List<AspNetUser> getAllPatientByMedecinJee(int id);
+	public List<AspNetUser> getAllPatientInterfaceMedecin();
 	public AspNetUser getPatientById(int id);
 	public List<String> AffichageNomMedecin();
 	public List<Parcour> ListaffichageConsume();
