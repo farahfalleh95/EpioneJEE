@@ -29,7 +29,12 @@
 <td><h:inputText value="#{parcoursBean.parcoura.maladie}"></h:inputText></td></tr>
 
 <tr><td><h:outputText value="Nom Medecin"></h:outputText></td>
-<td><h:inputText value="#{parcoursBean.parcoura.nomMedecin}"></h:inputText></td></tr>
+
+<td>
+<h:selectOneMenu value="#{parcoursBean.parcoura.nomMedecin}">
+<f:selectItems value="#{parcoursBean.noms}"></f:selectItems>
+</h:selectOneMenu>
+</td></tr>
 
 <tr><td><h:outputText value="specialite"></h:outputText></td>
 <td><h:inputText value="#{parcoursBean.parcoura.specialite}"></h:inputText></td></tr>

@@ -74,7 +74,7 @@ public class ParcoursBean {
 		AspNetUser pat = parcourService.getPatientByIdaa(idPatient);
 		AspNetUser med  = parcourService.getDoctotByName(parcourService.getFirstname(nomMedecin),parcourService.getLastName(nomMedecin));		
 		parcourService.mailingPatinet(pat.getEmail(), user.getEmail(), user.getPassword(), "Confirmation Rendez-vous avec votre docteur "+ nomMedecin, nomMedecin," Bonjour "+pat.getFirstName()+" "+pat.getLastName()+" , je vous ai planifié un nouveau rendez-vous avec Docteur "+nomMedecin+" merci de voir la nouvelle liste de vos parcours  ,Cordialement");
-		parcourService.mailingPatinet(med.getEmail(), user.getEmail(), user.getPassword(), "Suggestion d'un nouveau Rendez-vous", nomMedecin,"Bonjour Docteur "+med.getFirstName()+" "+med.getLastName()+" je suis "+user.getFirstName()+" "+user.getLastName()+" je vous ai planifié un nouveau rendez-vous avec mon patient "+pat.getFirstName()+" "+pat.getLastName()+" merci de voir la nouvelle liste de vos parcours  ,Cordialement");
+		parcourService.mailingPatinet(med.getEmail(), user.getEmail(), user.getPassword(), "Suggestion d'un nouveau Rendez-vous", nomMedecin,"Bonjour Docteur "+med.getFirstName()+" "+med.getLastName()+" je suis Docteur "+user.getFirstName()+" "+user.getLastName()+" je vous ai planifié un nouveau rendez-vous avec mon patient "+pat.getFirstName()+" "+pat.getLastName()+" merci de voir la nouvelle liste de vos parcours  ,Cordialement");
 		String navigateTo = "null";
 		navigateTo = "/pages/AffichageParcoursPatient?faces-redirect=true";
 		return navigateTo;
