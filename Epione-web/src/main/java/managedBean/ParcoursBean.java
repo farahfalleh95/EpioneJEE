@@ -126,7 +126,7 @@ public class ParcoursBean {
 	public List<Parcour> AffichageParcoursInterfacePatient() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("user");
-		setLista(parcourService.getAllParcoursPatient(user.getId()));
+		setLista(parcourService.AffichageParcoursInterfacePatient(user.getId()));
 		System.out.println(user.getId());
 		System.out.println(lista);
 		return lista;
@@ -257,6 +257,9 @@ public class ParcoursBean {
 		this.idp = idp;
 	}
 	public List<Parcour> getLista() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("userpatient");
+		lista=parcourService.AffichageParcoursInterfacePatient(user.getId());
 		return lista;
 	}
 	public void setLista(List<Parcour> lista) {

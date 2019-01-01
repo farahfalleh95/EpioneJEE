@@ -43,6 +43,8 @@ public class loginBean implements Serializable {
 		{
 			navigateTo = "/pages/AffichageParcoursInterfacePatient?faces-redirect=true";
 			loggedIn = true;
+			FacesContext context = FacesContext.getCurrentInstance();
+			context.getExternalContext().getSessionMap().put("userpatient", user);
 			
 		}
 		else 

@@ -28,4 +28,5 @@ public interface ParcourServiceRemote {
 	public String getFirstname(String chaine);
 	public String getLastName(String chaine);
 	public List<AspNetUser> ListaffichagePatientConsume();
+	public List<Parcour> AffichageParcoursInterfacePatient(int id);
 }

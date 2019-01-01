@@ -177,7 +177,6 @@ public class ParcourService implements ParcourServiceRemote{
 		catch (Exception e) { System.out.println("Erreur : " + e); }
 		return listpatient;
 
-
 		}
 	@Override
 	public AspNetUser getPatientById(int id) {
@@ -194,7 +193,7 @@ public class ParcourService implements ParcourServiceRemote{
 		List<String> noms=new ArrayList<String>();
 		List<AspNetUser> medecins = em.createQuery("Select p from AspNetUser p where p.discriminator='Medecin'", AspNetUser.class).getResultList();
 		for (AspNetUser aspNetUser : medecins) {
-			noms.add(aspNetUser.getFirstName()+"-"+aspNetUser.getLastName());
+			noms.add(aspNetUser.getFirstName()+" "+aspNetUser.getLastName());
 		}
 		return noms;
 
@@ -258,14 +257,14 @@ public class ParcourService implements ParcourServiceRemote{
 	
 	@Override
 	public String getFirstname(String chaine) {
-		int num = chaine.indexOf("-");
+		int num = chaine.indexOf(" ");
 		String res =  chaine.substring(0, num);
 		System.out.println("Firstname:"+res);
 		return res;
 	}
 	@Override
 	public String getLastName(String chaine) {
-		int num = chaine.indexOf("-");
+		int num = chaine.indexOf(" ");
 		String res =  chaine.substring(num+1, chaine.length());
 		System.out.println("lastdayName:"+res);
 		return res;
@@ -301,9 +300,15 @@ public class ParcourService implements ParcourServiceRemote{
 		}
 		return null;
 	}
+	@Override
+	public List<Parcour> AffichageParcoursInterfacePatient(int id) {
+		TypedQuery<Parcour> query = em.createQuery("select e from Parcour e where e.idPatient=:id", Parcour.class); 
 
-
-
+		query.setParameter("id", id); 
+		List<Parcour> p = query.getResultList();
+		System.out.println("parcours est: "+p.toString());
+		return p;
+	}
 
 		}
 	
