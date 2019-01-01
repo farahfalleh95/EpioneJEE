@@ -2,6 +2,9 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.sql.Timestamp;
 
 
@@ -9,6 +12,7 @@ import java.sql.Timestamp;
  * The persistent class for the AspNetUsers database table.
  * 
  */
+@JsonIgnoreProperties(ignoreUnknown=true)
 @Entity
 @Table(name="AspNetUsers")
 @NamedQuery(name="AspNetUser.findAll", query="SELECT a FROM AspNetUser a")
@@ -79,6 +83,20 @@ public class AspNetUser implements Serializable {
 
 	public AspNetUser() {
 	}
+
+	
+	@Override
+	public String toString() {
+		return "AspNetUser [id=" + id + ", accessFailedCount=" + accessFailedCount + ", discriminator=" + discriminator
+				+ ", email=" + email + ", emailConfirmed=" + emailConfirmed + ", firstName=" + firstName + ", idSocial="
+				+ idSocial + ", lastName=" + lastName + ", localisation=" + localisation + ", lockoutEnabled="
+				+ lockoutEnabled + ", lockoutEndDateUtc=" + lockoutEndDateUtc + ", nom=" + nom + ", password="
+				+ password + ", passwordHash=" + passwordHash + ", phoneNumber=" + phoneNumber
+				+ ", phoneNumberConfirmed=" + phoneNumberConfirmed + ", prenom=" + prenom + ", securityStamp="
+				+ securityStamp + ", source=" + source + ", specialite=" + specialite + ", twoFactorEnabled="
+				+ twoFactorEnabled + ", userName=" + userName + "]";
+	}
+
 
 	public int getId() {
 		return this.id;

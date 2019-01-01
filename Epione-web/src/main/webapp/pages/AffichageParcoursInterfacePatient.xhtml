@@ -1,21 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:ui="http://java.sun.com/jsf/facelets" 
+template="/template/template.xhtml">
+<ui:param name="page_name" value="Affichage Parcours Patient" />
+<ui:define name="content">
+<h:panelGroup>
+<h:form>
+<h:outputText value="Affichage Parcours Patient" /> 
 
-	<ui:composition template="/template/template.xhtml">
-	
-	
-		<ui:param name="page_name" value="Affichage Parcours Patients" />
-	<ui:define name="content">
-	<h:panelGroup>
-	<h:form>
-		<h:outputText value="Affichage Parcours Patients" /> 
-		</h:form>
-	</h:panelGroup>
-	</ui:define>
-	
-	
-	</ui:composition>
-</html>
+<h:dataTable value="#{parcoursBean.lista}" var="parcour" border="1">
+
+<h:column><f:facet name="header"><h:outputText value="adresse" /></f:facet>
+<h:outputText value="#{parcour.adresse}" /></h:column>
+
+
+<h:column><f:facet name="header"><h:outputText value="etat" /></f:facet>
+<h:outputText value="#{parcour.etat}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="etatrdv" /></f:facet>
+<h:outputText value="#{parcour.etatrdv}" /></h:column>
+
+<h:column><f:facet name="header"><h:outputText value="nom medecin" /></f:facet>
+<h:outputText value="#{parcour.nomMedecin}" /></h:column>
+
+
+</h:dataTable>
+
+</h:form>
+</h:panelGroup>
+</ui:define>
+</ui:composition> 
+

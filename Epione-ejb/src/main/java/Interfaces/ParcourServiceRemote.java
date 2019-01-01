@@ -21,10 +21,11 @@ public interface ParcourServiceRemote {
 	public List<String> AffichageNomMedecin();
 	public List<Parcour> ListaffichageConsume();
 	public void ChangerEtat(Parcour p);
-	public void mailingPatinet (String emailPatient ,String emaildoctor,String password, String contenu,String nomdocteur);
+	public void mailingPatinet (String emailPatient ,String emaildoctor,String password, String contenu,String nomdocteur,String text);
 	public void mailingDocotor (String emailDoctor , String contenu);
 	public AspNetUser getPatientByIdaa(int id);
 	public AspNetUser getDoctotByName (String firstname,String lastName);
 	public String getFirstname(String chaine);
 	public String getLastName(String chaine);
+	public List<AspNetUser> ListaffichagePatientConsume();
 }

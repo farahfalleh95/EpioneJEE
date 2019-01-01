@@ -29,11 +29,15 @@ import javax.ws.rs.core.Response;
 import javax.xml.registry.infomodel.User;
 
 import java.io.Console;
+import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.security.Principal;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
@@ -94,35 +98,7 @@ public class ParcourService implements ParcourServiceRemote{
 		Invocation.Builder invocationBuilder = target.request(MediaType.APPLICATION_JSON);
 		Response response = invocationBuilder.post(Entity.entity(u, MediaType.APPLICATION_JSON));
 		System.out.println(response.readEntity(String.class));
-		///////////////Envoi MAIL 
-		
-		final String username = "raniafalleh25@gmail.com";
-		final String password = "farahctt17R";
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
-		Session session = Session.getInstance(props,
-		  new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-			return new PasswordAuthentication(username, password);
-			}
-		  });
-		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("raniafalleh25@gmail.com"));
-			message.setRecipients(Message.RecipientType.TO,
-			InternetAddress.parse("farah.falleh@esprit.tn"));
-			message.setSubject("Testing Subject");
-			message.setText("hhh");
-			Transport.send(message);
-			System.out.println("Done");
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-	
-		
+
 	}
 	@Override
 	public void deleteProjectById(int id) {
@@ -239,8 +215,7 @@ public class ParcourService implements ParcourServiceRemote{
 		
 	}
 	@Override
-	public void mailingPatinet(String emailPatient, String emaildoctor,String passworddoc,String contenu ,String nomdocteur) {
-///////////////Envoi MAIL 
+	public void mailingPatinet(String emailPatient, String emaildoctor,String passworddoc,String contenu ,String nomdocteur,String text) {
 		
 	final String username = emaildoctor;
 	final String password = passworddoc;
@@ -260,14 +235,13 @@ public class ParcourService implements ParcourServiceRemote{
 		message.setFrom(new InternetAddress(emaildoctor));
 		message.setRecipients(Message.RecipientType.TO,
 		InternetAddress.parse(emailPatient));
-		message.setSubject(contenu+" ---"+nomdocteur);
-		message.setText("hhh");
+		message.setSubject(contenu);
+		message.setText(text);
 		Transport.send(message);
-		System.out.println("Done");
 	} catch (MessagingException e) {
 		throw new RuntimeException(e);
 	}
-	System.out.println("mail envoyer");
+	System.out.println("mail envoyée");
 
 		
 	}
@@ -305,6 +279,27 @@ public class ParcourService implements ParcourServiceRemote{
 		AspNetUser user = query.getSingleResult();
 		System.out.println("user"+user.toString());
 		return user;
+	}
+	@Override
+	public List<AspNetUser> ListaffichagePatientConsume() {
+		Client client=ClientBuilder.newClient();
+		WebTarget target=client.target("http://localhost:51403/MedecinF/IndexJson");
+		Response response=target.request().get();
+		
+		ObjectMapper mapper=new ObjectMapper();
+		List<AspNetUser> list;
+		try{
+		list=(List<AspNetUser>) mapper.readValue(new URL("http://localhost:51403/MedecinF/IndexJson"),new TypeReference<List<AspNetUser>>(){});
+		System.out.println(list.get(1).getEmail());
+		return list;
+		} catch(JsonParseException e){
+		e.printStackTrace();
+		}catch(JsonMappingException e){
+		e.printStackTrace();
+		}catch (IOException e){
+		e.printStackTrace();
+		}
+		return null;
 	}
 
 

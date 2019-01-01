@@ -32,6 +32,7 @@ public class ParcoursBean {
 	private List<Parcour> parcourspatients;
 	private List<String> noms;
 	private int idp;
+	private List<Parcour> lista;
 	private Parcour parcoura=new Parcour();
 	//////////////
 	private Integer parcourIdToBeUpdated;
@@ -49,6 +50,7 @@ public class ParcoursBean {
 		setIdPatient(id);
 		return navigateTo;
 	}
+	
 	public String AddSubmitParcours() {
 		FacesContext context = FacesContext.getCurrentInstance();
 		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("user");
@@ -71,8 +73,8 @@ public class ParcoursBean {
 		parcourService.getLastName(nomMedecin);
 		AspNetUser pat = parcourService.getPatientByIdaa(idPatient);
 		AspNetUser med  = parcourService.getDoctotByName(parcourService.getFirstname(nomMedecin),parcourService.getLastName(nomMedecin));		
-		parcourService.mailingPatinet(pat.getEmail(), user.getEmail(), user.getPassword(), "contenu", nomMedecin);
-		parcourService.mailingPatinet(med.getEmail(), user.getEmail(), user.getPassword(), "email doc", nomMedecin);
+		parcourService.mailingPatinet(pat.getEmail(), user.getEmail(), user.getPassword(), "Confirmation Rendez-vous avec votre docteur "+ nomMedecin, nomMedecin," Bonjour "+pat.getFirstName()+" "+pat.getLastName()+" , je vous ai planifié un nouveau rendez-vous avec Docteur "+nomMedecin+" merci de voir la nouvelle liste de vos parcours  ,Cordialement");
+		parcourService.mailingPatinet(med.getEmail(), user.getEmail(), user.getPassword(), "Suggestion d'un nouveau Rendez-vous", nomMedecin,"Bonjour Docteur "+med.getFirstName()+" "+med.getLastName()+" je suis "+user.getFirstName()+" "+user.getLastName()+" je vous ai planifié un nouveau rendez-vous avec mon patient "+pat.getFirstName()+" "+pat.getLastName()+" merci de voir la nouvelle liste de vos parcours  ,Cordialement");
 		String navigateTo = "null";
 		navigateTo = "/pages/AffichageParcoursPatient?faces-redirect=true";
 		return navigateTo;
@@ -109,16 +111,7 @@ public class ParcoursBean {
 		setParcourspatients(parcourService.getAllParcoursPatient(id));
 		return navigateTo;
 	}
-	/*
- 	public String AffichageParcoursPatient() {
- 		
-	String navigateTo = "null";
-	navigateTo = "/pages/AffichageParcoursPatient?faces-redirect=true";
-	setParcourspatients(parcourService.ListaffichageConsume());
-	return navigateTo;
-	
- 	}
- 	*/
+
 	public void ChangerEtat(Parcour p){	
 		parcourService.ChangerEtat(p);
 	}
@@ -129,6 +122,17 @@ public class ParcoursBean {
 	parcourService.deleteProjectById(p.getId()); 
 	this.parcourspatients.remove(p);
 	}
+	
+	public List<Parcour> AffichageParcoursInterfacePatient() {
+		FacesContext context = FacesContext.getCurrentInstance();
+		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("user");
+		setLista(parcourService.getAllParcoursPatient(user.getId()));
+		System.out.println(user.getId());
+		System.out.println(lista);
+		return lista;
+		
+	}
+ 
 
 	public String getAdresse() {
 		return adresse;
@@ -251,6 +255,12 @@ public class ParcoursBean {
 	}
 	public void setIdp(int idp) {
 		this.idp = idp;
+	}
+	public List<Parcour> getLista() {
+		return lista;
+	}
+	public void setLista(List<Parcour> lista) {
+		this.lista = lista;
 	}
 
 }
