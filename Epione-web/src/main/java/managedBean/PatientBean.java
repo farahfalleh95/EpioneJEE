@@ -25,11 +25,6 @@ public class PatientBean {
 	ParcourService parcoursService; 
 	
 	public List<AspNetUser> getPatientsByDoctor(){
-		
-		FacesContext context = FacesContext.getCurrentInstance();
-		AspNetUser user=(AspNetUser) context.getExternalContext().getSessionMap().get("user");
-		
-		System.out.println(user.getId());
 		return parcoursService.getAllPatientInterfaceMedecin();
 	}
 

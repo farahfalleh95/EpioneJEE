@@ -34,6 +34,7 @@ public class ParcoursBean {
 	private int idp;
 	private List<Parcour> lista;
 	private Parcour parcoura=new Parcour();
+    private int statEtatrdv;
 	//////////////
 	private Integer parcourIdToBeUpdated;
 	public Integer getParcourIdToBeUpdated() {
@@ -265,5 +266,12 @@ public class ParcoursBean {
 	public void setLista(List<Parcour> lista) {
 		this.lista = lista;
 	}
+	public int getStatEtatrdv() {
+		return statEtatrdv;
+	}
+	public void setStatEtatrdv(int statEtatrdv) {
+		this.statEtatrdv = statEtatrdv;
+	}
+	
 
 }

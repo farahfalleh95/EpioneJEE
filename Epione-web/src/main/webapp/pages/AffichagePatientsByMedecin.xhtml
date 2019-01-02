@@ -8,9 +8,15 @@ template="/template/template.xhtml">
 <h:panelGroup>
 <h:form>
 <h:outputText value="Affichage Patients" /> 
+<br>
+</br>
+<div class="card-body">
+          <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+            <div class="row"><div class="col-sm-12 col-md-6">
+            <div class="dataTables_length" id="dataTable_length">
 
-
-<h:dataTable value="#{patientBean.patients}" var="patient" border="1">
+            <h:dataTable value="#{patientBean.patients}" var="patient" border="1">
 
 <h:column><f:facet name="header"><h:outputText value="email" /></f:facet>
 <h:outputText value="#{patient.email}" /></h:column>
@@ -34,6 +40,14 @@ template="/template/template.xhtml">
 </h:column>
 
 </h:dataTable>
+            
+        	</div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+
 
 </h:form>
 </h:panelGroup>

@@ -8,12 +8,22 @@ template="/template/template.xhtml">
 <h:panelGroup>
 <h:form>
 <h:outputText value="Affichage Parcours" /> 
+<br>
+</br>
 <h:column>
 <f:facet name="header"><h:outputText value="Action" /></f:facet>
 <h:commandButton action="#{parcoursBean.AddParcours(parcoursBean.idp)}" value="Ajouter parcours" /> 
 </h:column>
+<br>
+</br>
 
-<h:dataTable value="#{parcoursBean.parcourspatients}" var="parcour" border="1">
+
+<div class="card-body">
+          <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+            <div class="row"><div class="col-sm-12 col-md-6">
+            <div class="dataTables_length" id="dataTable_length">
+            <h:dataTable value="#{parcoursBean.parcourspatients}" var="parcour" border="1">
 
 <h:column><f:facet name="header"><h:outputText value="adresse" /></f:facet>
 <h:outputText value="#{parcour.adresse}" /></h:column>
@@ -36,6 +46,14 @@ template="/template/template.xhtml">
 </h:column>
 
 </h:dataTable>
+            
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+              </div>
+
 
 </h:form>
 </h:panelGroup>

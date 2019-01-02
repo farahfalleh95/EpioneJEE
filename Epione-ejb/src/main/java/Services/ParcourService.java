@@ -289,6 +289,13 @@ public class ParcourService implements ParcourServiceRemote{
 		return p;
 	}
 
+	@Override
+	public int getEtatParcours() {
+		TypedQuery<Long> emp = em.createQuery("Select count(*) from Parcour e where e.etatrdv='Pas encore'", Long.class);
+		long nb = emp.getSingleResult();
+		return (int) nb;
+	}
+
 		}
 	
 	
