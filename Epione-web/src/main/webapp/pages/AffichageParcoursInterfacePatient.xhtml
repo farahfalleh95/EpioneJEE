@@ -2,13 +2,17 @@
 xmlns:f="http://java.sun.com/jsf/core"
 xmlns:h="http://java.sun.com/jsf/html"
 xmlns:ui="http://java.sun.com/jsf/facelets" 
-template="/template/template.xhtml">
+template="/templatepatient/template.xhtml">
 <ui:param name="page_name" value="Affichage Parcours Patient" />
 <ui:define name="content">
 <h:panelGroup>
 <h:form>
 <h:outputText value="Affichage Parcours Patient" /> 
-
+<div class="card-body">
+          <div class="table-responsive">
+            <div id="dataTable_wrapper" class="dataTables_wrapper container-fluid dt-bootstrap4">
+            <div class="row"><div class="col-sm-12 col-md-6">
+            <div class="dataTables_length" id="dataTable_length">
 <h:dataTable value="#{parcoursBean.lista}" var="parcour" border="1">
 
 <h:column><f:facet name="header"><h:outputText value="adresse" /></f:facet>
@@ -26,6 +30,12 @@ template="/template/template.xhtml">
 
 
 </h:dataTable>
+ 	</div>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
 
 </h:form>
 </h:panelGroup>
